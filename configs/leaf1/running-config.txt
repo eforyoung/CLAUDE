@@ -1,4 +1,10 @@
-﻿version 9.3(5) Bios:version  
+﻿show running-config
+
+!Command: show running-config
+!No configuration change since last restart
+!Time: Sat May  2 07:45:02 2026
+
+version 9.3(5) Bios:version  
 hostname LEAF-1
 vdc LEAF-1 id 1
   limit-resource vlan minimum 16 maximum 4094
@@ -35,6 +41,9 @@ vlan 10
   vn-segment 10010
 
 vrf context management
+hardware access-list tcam region racl 512
+hardware access-list tcam region arp-ether 256 double-wide
+
 
 interface Vlan1
 
@@ -48,6 +57,7 @@ interface nve1
   host-reachability protocol bgp
   source-interface loopback0
   member vni 10010
+    suppress-arp
     ingress-replication protocol bgp
 
 interface Ethernet1/1
@@ -215,8 +225,8 @@ router bgp 327820
 evpn
   vni 10010 l2
     rd auto
-    route-target import auto
-    route-target export auto
+    route-target import 327820:10010
+    route-target export 327820:10010
 
 
 

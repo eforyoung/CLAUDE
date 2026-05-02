@@ -1,4 +1,10 @@
-﻿version 9.3(5) Bios:version  
+﻿show running-config
+
+!Command: show running-config
+!Running configuration last done at: Sat May  2 07:04:11 2026
+!Time: Sat May  2 07:45:48 2026
+
+version 9.3(5) Bios:version  
 hostname SPINE-1
 vdc SPINE-1 id 1
   limit-resource vlan minimum 16 maximum 4094
@@ -19,7 +25,7 @@ feature lldp
 feature nv overlay
 
 no password strength-check
-username admin password 5 $5$KNNHDA$jXR2EvdapKkoJ579TbACMnAab7uPlo3GqS7cFTi7638  role network-admin
+username admin password 5 $5$EGDJKN$R1HV/wM/P.GxyMY8ALGmczWCEzhqr0b4AeBCzZm9S45  role network-admin
 ip domain-lookup
 copp profile strict
 snmp-server user admin network-admin auth md5 0xf3e210d7ce364d135ffbcc0a066f6d76 priv 0xf3e210d7ce364d135ffbcc0a066f6d76 localizedkey
@@ -190,7 +196,7 @@ router bgp 327820
     retain route-target all
   neighbor 10.22.255.252
     remote-as 327820
-    description TO-LEAF-2 RR Client
+    description Connection to LEAF-2 RR
     update-source loopback0
     address-family l2vpn evpn
       send-community
@@ -198,7 +204,7 @@ router bgp 327820
       route-reflector-client
   neighbor 10.22.255.253
     remote-as 327820
-    description TO-LEAF-1 RR Client
+    description Connection to LEAF-1 RR
     update-source loopback0
     address-family l2vpn evpn
       send-community
